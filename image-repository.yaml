@@ -57,14 +57,25 @@ Resources:
                 Action:
                   - "ecr:GetAuthorizationToken"
                 Resource: "*"
+        -
+          PolicyName: "ListCfnExports"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - "cloudformation:ListExports"
+                Resource: "*"
+            
   Ec2AccessEcrProfile:
     Type: AWS::IAM::InstanceProfile
     Properties:
       Roles:
         - !Ref Ec2AccessEcrRole
 Outputs:
-    RobotRepositoryArn:
-        Description: The ARN of the repository
-        Value: !GetAtt RobotRepository.Arn
+    RobotRepositoryUri:
+        Description: The URI of the repository
+        Value: !Sub "${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${RobotRepository}"
         Export:
-            Name: !Sub "${AWS::StackName}-EcrArn"
+            Name: !Sub "${AWS::StackName}-EcrUri"
