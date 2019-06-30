@@ -1,5 +1,7 @@
-Invoke-Expression -Command (Get-ECRLoginCommand -Region us-east-1).Command
-$ecr_repo_name = Get-CFNExport | Where-Object {$_.Name -eq 'docker-image-repository-EcrUri'} | Select -ExpandProperty 'Value'
+$region = (ConvertFrom-Json (Invoke-WebRequest -Uri http://169.254.169.254/latest/dynamic/instance-identity/document -UseBasicParsing).Content).region
+Invoke-Expression -Command (Get-ECRLoginCommand -Region $region).Command
+
+$ecr_repo_name = Get-CFNExport | Where-Object {$_.Name -eq 'docker-build:ecr-uri'} | Select -ExpandProperty 'Value'
 
 Write-Host $ecr_repo_name
 
