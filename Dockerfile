@@ -1,10 +1,12 @@
 # start with Microsoft Server core latest edition
 FROM mcr.microsoft.com/windows/servercore:ltsc2016
-RUN PowerShell -Command Install-PackageProvider -Name NuGet -Force
-RUN PowerShell -Command Register-PSRepository -Name UiPath -SourceLocation https://www.myget.org/F/uipath-dev/api/v2
-RUN PowerShell -Command Install-Module -Repository UiPath -Name UiPath.Powershell -Force
-RUN MKDIR C:\\UiPath\\Robot
+RUN PowerShell -Command Install-PackageProvider -Name NuGet -Force; \
+	Register-PSRepository -Name UiPath -SourceLocation https://www.myget.org/F/uipath-dev/api/v2; \
+	Install-Module -Repository UiPath -Name UiPath.Powershell -Force; \
+    New-Item -Path "c:\\" -Name "UiPath" -ItemType "directory"; \
+    New-Item -Path "c:\\UiPath" -Name "Robot" -ItemType "directory"; \
+    Invoke-WebRequest https://download.uipath.com/UiPathStudio.msi -OutFile C:\\UiPath\\UiPathStudio.msi; \
+    Start-Process C:\\UiPath\\UiPathStudio.msi -ArgumentList 'ADDLOCAL=DesktopFeature,Robot,Packages APPLICATIONFOLDER=C:\\UiPath\\Robot /quiet' -Wait; \
+    Remove-Item c:\\UiPath\\UiPathStudio.msi -Force
 WORKDIR C:\\UiPath
-ADD https://download.uipath.com/UiPathStudio.msi C:\\UiPath
-RUN C:\\UiPath\\UiPathStudio.msi ADDLOCAL=DesktopFeature,Robot,Packages APPLICATIONFOLDER=C:\\UiPath\\Robot /quiet
 CMD ["cmd"]
