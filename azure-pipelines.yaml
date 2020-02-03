@@ -17,6 +17,6 @@ jobs:
         scriptType: bash
         scriptLocation: inlineScript
         inlineScript:  |
-          docker build -t $(containerRegistry).azurecr.io/$(repositoryName) $(Build.SourcesDirectory)/.
+          docker build -t $(containerRegistry).azurecr.io/$(repositoryName) -f $(Build.SourcesDirectory)/Dockerfile $(Build.SourcesDirectory)/
           az acr login --name $(containerRegistry)
           docker push $(containerRegistry).azurecr.io/$(repositoryName):latest
