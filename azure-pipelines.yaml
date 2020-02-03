@@ -10,14 +10,14 @@ jobs:
     vmImage: windows-latest
 
   steps:
-    - task: AzureCLI@2
-      displayName: Build and Push the Docker image
-      inputs:
-        azureSubscription: $(azureSubscription)
-        scriptType: bash
-        scriptLocation: inlineScript
-        inlineScript:  |
-          dir /s
-          docker build -t $(containerRegistry).azurecr.io/$(repositoryName) -f $(Build.SourcesDirectory)/Dockerfile $(Build.SourcesDirectory)/
-          az acr login --name $(containerRegistry)
-          docker push $(containerRegistry).azurecr.io/$(repositoryName):latest
+    - script: dir /s
+#    - task: AzureCLI@2
+#      displayName: Build and Push the Docker image
+#      inputs:
+#        azureSubscription: $(azureSubscription)
+#        scriptType: bash
+#        scriptLocation: inlineScript
+#        inlineScript:  |
+#          docker build -t $(containerRegistry).azurecr.io/$(repositoryName) -f $(Build.SourcesDirectory)/Dockerfile $(Build.SourcesDirectory)/
+#          az acr login --name $(containerRegistry)
+#          docker push $(containerRegistry).azurecr.io/$(repositoryName):latest
