@@ -1,5 +1,5 @@
 # start with Microsoft Server core latest edition
-FROM mcr.microsoft.com/windows/servercore:ltsc2016
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 RUN PowerShell -Command Install-PackageProvider -Name NuGet -Force; \
 	Register-PSRepository -Name UiPath -SourceLocation https://www.myget.org/F/uipath-dev/api/v2; \
 	Install-Module -Repository UiPath -Name UiPath.Powershell -Force; \

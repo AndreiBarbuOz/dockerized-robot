@@ -18,3 +18,5 @@ Run the AWS build script with:
 ```cmd
  powershell -file build-image.ps1
 ```
+
+For Azure, create a build pipeline based on `azure-pipelines.yaml`
