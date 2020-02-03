@@ -11,6 +11,7 @@ jobs:
 
   steps:
     - script: dir /s
+    - script: docker build -t $(containerRegistry).azurecr.io/$(repositoryName) .
 #    - task: AzureCLI@2
 #      displayName: Build and Push the Docker image
 #      inputs:
