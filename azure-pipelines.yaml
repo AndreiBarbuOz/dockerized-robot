@@ -16,7 +16,7 @@ jobs:
         azureSubscription: $(azureSubscription)
         scriptType: ps
         scriptLocation: inlineScript
-        inlineScript:  az acr login --name $(containerRegistry)
-#          docker build -t $(containerRegistry).azurecr.io/$(repositoryName) .
-          
-#          docker push $(containerRegistry).azurecr.io/$(repositoryName):latest
+        inlineScript: | 
+          docker build -t $(containerRegistry).azurecr.io/$(repositoryName) .
+          az acr login --name $(containerRegistry)
+          docker push $(containerRegistry).azurecr.io/$(repositoryName):latest
