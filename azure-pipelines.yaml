@@ -1,22 +1,21 @@
 variables:
 - group: uipath-cicd
 
-jobs:
-- job:
-  displayName: Build the docker image
-  timeoutInMinutes: 360
-
-  pool:
-    vmImage: windows-latest
-
-  steps:
-    - task: AzureCLI@2
-      displayName: Build and Push the Docker image
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: windows-latest
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
       inputs:
-        azureSubscription: $(azureSubscription)
-        scriptType: ps
-        scriptLocation: inlineScript
-        inlineScript: | 
-          docker build -t $(containerRegistry).azurecr.io/$(repositoryName) .
-          az acr login --name $(containerRegistry)
-          docker push $(containerRegistry).azurecr.io/$(repositoryName):latest
+        command: buildAndPush
+        repository: $(repositoryName)
+        containerRegistry: $(containerRegistry)
+        tags: |
+          $(Build.BuildNumber)
+          latest
