@@ -26,3 +26,8 @@ docker build -t uipath-robot .
 4. Create a starter pipeline within the project, triggered by the GitHub repository hosting the code. Go through the steps to create the service principal on Azure which will allow the Azure DevOps pipeline to push the images to the ACR.
 5. `git push -u origin` on branch master to trigger the pipeline and build the dockerized uipath-robot
 
+## Azure devops prerequisites:
+
+A variable group needs to be defined in the Azure DevOps project, containing at least these 2 variables:
+- repositoryName: containing the container repository name
+- containerRegistry: containing the container registry connection (can be found on the Project -> service connections page in the DevOps portal)

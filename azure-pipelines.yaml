@@ -1,5 +1,19 @@
+
+trigger:
+- master
+
+resources:
+- repo: self
+
 variables:
 - group: uipath-cicd
+- name: dockerfilePath
+  value: '$(Build.SourcesDirectory)/Dockerfile'
+- name: tag
+  value: '$(Build.BuildId)'
+  # Agent VM image name
+- name: vmImageName
+  value: 'windows-latest'
 
 stages:
 - stage: Build
@@ -8,14 +22,15 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: windows-latest
+      vmImage: $(vmImageName)
     steps:
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
         repository: $(repositoryName)
+        dockerfile: $(dockerfilePath)
         containerRegistry: $(containerRegistry)
         tags: |
-          $(Build.BuildNumber)
+          $(tag)
           latest
