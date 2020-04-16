@@ -15,6 +15,10 @@ Test locally with:
 ```cmd
 docker build -t uipath-robot .
 ```
+Run locally with:
+```cmd
+docker run -it uipath-robot
+```
 
 ## Building on Azure DevOps
 
