@@ -28,6 +28,6 @@ docker build -t uipath-robot .
 
 ## Azure devops prerequisites:
 
-A variable group needs to be defined in the Azure DevOps project, containing at least these 2 variables:
+A variable named `uipath-cicd` group needs to be defined in the Azure DevOps project, containing at least these 2 variables:
 - repositoryName: containing the container repository name
 - containerRegistry: containing the container registry connection (can be found on the Project -> service connections page in the DevOps portal)
