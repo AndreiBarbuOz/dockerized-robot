@@ -1,6 +1,6 @@
 # UiPath Dockerized Robot for CI/CD pipelines
 
-[![Build Status](https://dev.azure.com/andreibarbu0946/UiPathGoodPractices/_apis/build/status/AndreiBarbuOz.dockerized-robot?branchName=master)](https://dev.azure.com/andreibarbu0946/UiPathGoodPractices/_build/latest?definitionId=11&branchName=master)
+[![Build Status](https://dev.azure.com/andbarbu0717/UiPath%20Good%20Practices/_apis/build/status/AndreiBarbuOz.dockerized-robot?branchName=master)](https://dev.azure.com/andbarbu0717/UiPath%20Good%20Practices/_build/latest?definitionId=9&branchName=master)
 
 A Docker image containing the UiPath Robot and the UiPath Orchestrator API Powershell module. Intended purpose to be used as part of a CI/CD pipeline.
 
@@ -22,7 +22,7 @@ docker run -it uipath-robot
 
 ## Building on Azure DevOps
 
-![architecture](https://www.lucidchart.com/publicSegments/view/b3bd76c8-6f40-4588-b887-f2b87d480e16/image.png)
+[![architecture](https://www.lucidchart.com/publicSegments/view/b3bd76c8-6f40-4588-b887-f2b87d480e16/image.png)](https://www.lucidchart.com/publicSegments/view/b3bd76c8-6f40-4588-b887-f2b87d480e16/image.png)
 
 1. Create an account with Azure and a subscription within the account.
 2. Create a resource group and an Azure Container Registry within the RG.
